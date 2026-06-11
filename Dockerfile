@@ -1,11 +1,5 @@
-FROM node:18
+FROM nginx:latest
 
-WORKDIR /app
+COPY index.html /usr/share/nginx/html/index.html
 
-COPY . .
-
-RUN npm install
-
-EXPOSE 3000
-
-CMD ["node", "index.js"]
+EXPOSE 80

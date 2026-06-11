@@ -5,19 +5,19 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t node-docker-app .'
+                bat 'docker build -t mobile-shop .'
             }
         }
 
         stage('Remove Old Container') {
             steps {
-                bat 'docker rm -f node-app'
+                bat 'docker rm -f mobile-shop-container || exit 0'
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Run Container') {
             steps {
-                bat 'docker run -d -p 3000:3000 --name node-app node-docker-app'
+                bat 'docker run -d -p 8080:80 --name mobile-shop-container mobile-shop'
             }
         }
     }
